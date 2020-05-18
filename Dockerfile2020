@@ -32,7 +32,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends make && \
     rm -rf deploymentmanager-samples/
 
 # Install mozilla/sops
-RUN curl -L https://github.com/mozilla/sops/releases/download/3.5.0/sops-3.5.0.linux > /usr/local/bin/sops && \
+RUN curl -L https://github.com/mozilla/sops/releases/download/3.3.0/sops-3.3.0.linux > /usr/local/bin/sops && \
     chmod +x /usr/local/bin/sops
 
 LABEL maintainer="Mihaita Cristian Manda <mihaita-cristian.manda@atos.net>"
