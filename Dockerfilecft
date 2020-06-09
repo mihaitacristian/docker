@@ -1,14 +1,5 @@
 FROM google/cloud-sdk:295.0.0
 
-# Install Helm
-#RUN curl https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz > helm.tar.gz && \
-# tar xzvpf helm.tar.gz && \
-# cp linux-amd64/helm /usr/local/bin && \
-# rm helm.tar.gz && rm -rf linux-amd64
-#
-# Install jq
-RUN curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 > /usr/local/bin/jq && \
-    chmod +x /usr/local/bin/jq
 
 # Install python3 requests
 RUN apt-get update && \
@@ -16,9 +7,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip install requests
 
-## Install kustomize
-#RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 > /usr/local/bin/kustomize && \
-#    chmod +x /usr/local/bin/kustomize
 
 # Install cft
 RUN apt-get update && apt-get -y install --no-install-recommends make && \
@@ -33,8 +21,5 @@ RUN apt-get update && apt-get -y install --no-install-recommends make && \
     cp /usr/bin/python3.7 /usr/bin/python && \
     rm -rf deploymentmanager-samples/
 
-# Install mozilla/sops
-RUN curl -L https://github.com/mozilla/sops/releases/download/3.3.0/sops-3.3.0.linux > /usr/local/bin/sops && \
-    chmod +x /usr/local/bin/sops
 
 LABEL maintainer="Mihaita Cristian Manda <mihaita-cristian.manda@atos.net>"
