@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:292.0.0
+FROM google/cloud-sdk:295.0.0
 
 # Install Helm
 #RUN curl https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz > helm.tar.gz && \
@@ -14,7 +14,7 @@ RUN curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 >
 RUN apt-get update && \
     apt-get -y install --no-install-recommends python3-pip && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install requests
+    pip install requests
 
 ## Install kustomize
 #RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/v2.0.3/kustomize_2.0.3_linux_amd64 > /usr/local/bin/kustomize && \
@@ -23,12 +23,14 @@ RUN apt-get update && \
 # Install cft
 RUN apt-get update && apt-get -y install --no-install-recommends make && \
     rm -rf /var/lib/apt/lists/* && \
-    git clone https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit.git && \
+    git clone https://github.com/mihaitacristian/cloud-foundation-toolkit.git && \
     cd cloud-foundation-toolkit/dm && \
-    #make prerequisites && \docket
+    make cft-prerequisites && \
     make build && \
     make install && \
     cd / && \
+    rm /usr/bin/python && \
+    cp /usr/bin/python3.7 /usr/bin/python && \
     rm -rf deploymentmanager-samples/
 
 # Install mozilla/sops
